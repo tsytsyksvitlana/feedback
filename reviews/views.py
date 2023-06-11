@@ -6,19 +6,20 @@ from .forms import ReviewForm
 # Create your views here.
 
 def review(request):
-    if request.method == 'POST':
-        form=ReviewForm(request.POST)
+  if request.method == 'POST':
+    form = ReviewForm(request.POST)
 
-        if form.is_valid:
-            print(form.cleaned_data)
-            return HttpResponseRedirect("/thank-you")
-    
-    else:
-        form=ReviewForm()
-    
-    return render(request, "reviews/reviews.html", {
-                "form": form
-            })
+    if form.is_valid():
+      print(form.cleaned_data)
+      return HttpResponseRedirect("/thank-you")
+
+  else:
+    form = ReviewForm()
+
+  return render(request, "reviews/review.html", {
+    "form": form
+  })
+
 
 def thank_you(request):
-    return render(request, "reviews/thank_you.html")
+  return render(request, "reviews/thank_you.html")
